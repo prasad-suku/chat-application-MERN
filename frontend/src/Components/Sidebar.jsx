@@ -10,7 +10,8 @@ const Sidebar = () => {
   getUsers,unseenMessages,setUnseenMessages}=  useContext(ChatContext)
 
   const {logout,onlineUser} = useContext(AuthContext)
-  console.log("onlineuser",onlineUser);
+  // console.log("onlineuser",onlineUser);
+  // console.log(selectedUser,"selecteduser");
   
   const [input,setInput] = useState("")
   
@@ -53,7 +54,7 @@ const Sidebar = () => {
             filteredUsers?.map((user,ind)=>{
               return (
                 <>
-                <div key={ind} className='flex items-center gap-5' >
+                <div key={ind} className='flex items-center gap-5 cursor-pointer' onClick={()=>{setSelectedUser(user)}}>
                   <img src={user?.profilePicture || assets.avatar_icon} alt="user-prof" className='max-w-12 rounded-full' />
                    <div className='flex flex-col'>
                     <p>{user.fullName}</p>
