@@ -46,9 +46,10 @@ export const ChatProvider = ({children})=>{
 //   function to send message to the selected user
    const sendMessage = async(message)=>{
       try {
-        const {data} = await axios.post(`/api/messages/${selectedUser._id}`,message)
+        const {data} = await axios.post(`/api/messages/send/${selectedUser._id}`,message)
      if(data.success){
         setMesages((prev)=>[...prev,data.message])
+        getMessages(selectedUser?._id)
      } 
      else{
         toast.error(data.message)
@@ -66,7 +67,7 @@ export const ChatProvider = ({children})=>{
         if(selectedUser && newMessage.senderId ===selectedUser._id){
             newMessage.seen=true;
             setMesages((pre)=>[...pre,newMessage])
-            axios.put("/api/messages/mark/${newMessage._id}")
+            axios.put(`/api/messages/mark/${newMessage._id}`)
         }
         else{
             setUnseenMessages((prevUnseenMessages)=>({
@@ -82,6 +83,7 @@ export const ChatProvider = ({children})=>{
 
       useEffect(()=>{
           subscribeToMessages()
+          getMessages(selectedUser?._id)
           return ()=> unsubscribeFromMessages()
       },[socket,selectedUser])
 

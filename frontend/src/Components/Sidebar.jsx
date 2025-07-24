@@ -9,9 +9,8 @@ const Sidebar = () => {
  const {selectedUser,users,setSelectedUser,
   getUsers,unseenMessages,setUnseenMessages}=  useContext(ChatContext)
 
-  const {logout,onlineUser} = useContext(AuthContext)
-  // console.log("onlineuser",onlineUser);
-  // console.log(selectedUser,"selecteduser");
+  const {logout,onlineUser,Authuser} = useContext(AuthContext)
+
   
   const [input,setInput] = useState("")
   
@@ -26,11 +25,11 @@ const Sidebar = () => {
   },[onlineUser])
 
   return (
-    <div>
-        <div className="pb-5 px-4 py-5 overflow-y-scroll text-white ">
+    
+        <div className="pb-5 px-4 col-span-2  py-5 overflow-y-scroll text-white ">
             <div className="flex justify-between items-center">
                 <img src={assets.logo} alt="logo" className='max-w-15' />
-                <span className='font-bold text-xl text-white'>Quick chat</span>
+                <span className='font-bold text-lg hidden md:block text-white'>Quick Chat</span>
                 <div className="relative py-2 group">
                      <img src={assets.menu_icon} alt="menu-icon" className='max-h-5 cursor-pointer' />
                      <div className='absolute top-5  right-1  w-32 p-5 rounded-md bg-gray-800 text-white border border-gray-600  hidden group-hover:block'>
@@ -54,10 +53,10 @@ const Sidebar = () => {
             filteredUsers?.map((user,ind)=>{
               return (
                 <>
-                <div key={ind} className='flex items-center gap-5 cursor-pointer' onClick={()=>{setSelectedUser(user)}}>
-                  <img src={user?.profilePicture || assets.avatar_icon} alt="user-prof" className='max-w-12 rounded-full' />
+                <div key={user._id} className='flex relative items-center gap-5 cursor-pointer' onClick={()=>{setSelectedUser(user);setUnseenMessages((prev)=>({...prev,[user._id]:0}))}}>
+                  <img src={user?.profilePicture || assets.avatar_icon} alt="user-prof" className='max-w-12 rounded-full hidden md:block' />
                    <div className='flex flex-col'>
-                    <p>{user.fullName}</p>
+                    <p className='text-md md:text-lg'>{user.fullName}</p>
                     {onlineUser?.includes(user._id) ? <span className='text-green-400 text-xs'>Online</span>:<span className='text-gray-400 text-xs'>Offline</span>}
                    </div>
                    {unseenMessages[user._id] > 0 && <p className='absolute top-4 right-4 text-xs h-5 w-5 flex justify-center items-center rounded-full bg-violet-500/50'>{unseenMessages[user._id]}</p>}
@@ -73,7 +72,7 @@ const Sidebar = () => {
          </div>
            
         </div>
-    </div>
+    
   )
 }
 
