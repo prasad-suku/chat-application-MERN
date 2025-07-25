@@ -54,11 +54,12 @@ connectDB()
 
 app.use("/api/status",(req,res)=>res.send("server is running"))
  
-if(process.env.Node_ENV !=="production"){
+if(process.env.NODE_ENV !=="production"){
     const port =process.env.PORT || 300
     server.listen(port,()=>console.log("server is running")
     )
 
 }
 
+// export server for vercel
 export default server
