@@ -52,8 +52,13 @@ app.use("/api/messages",messageRouter)
 //  connect with database
 connectDB()
 
-// app.use("/api/status",(req,res)=>res.send("server is running"))
+app.use("/api/status",(req,res)=>res.send("server is running"))
+ 
+if(process.env.Node_ENV !=="production"){
+    const port =process.env.PORT || 300
+    server.listen(port,()=>console.log("server is running")
+    )
 
-const port =process.env.PORT || 300
-server.listen(port,()=>console.log("server is running")
-)
+}
+
+export default server
