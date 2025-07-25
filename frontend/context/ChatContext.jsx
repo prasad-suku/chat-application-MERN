@@ -36,6 +36,7 @@ export const ChatProvider = ({children})=>{
         const {data} = await axios.get(`/api/messages/${userId}`)
         if(data.success){
             setMesages(data.messages)
+          
         }
       } catch (error) {
         toast.error(error.message)
@@ -50,6 +51,7 @@ export const ChatProvider = ({children})=>{
      if(data.success){
         setMesages((prev)=>[...prev,data.message])
         getMessages(selectedUser?._id)
+   
      } 
      else{
         toast.error(data.message)

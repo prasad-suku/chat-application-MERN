@@ -117,15 +117,15 @@ const Chatcontainer = () => {
         </div>
 
         {/* input area */}
-        <div className='absolute bottom-18 left-0 right-0 flex items-center md:gap-3 gap-1'>
-          <div className='flex-1 flex items-center px-1 bg-gray-100/20 rounded-full'>
+        <div className='absolute bottom-16 mt-4 md:left-0 -left-12  right-0 flex mr-40 md:mx-2 items-center  '>
+          <div className='flex-1 flex items-center px-4 md:px-1 bg-gray-100/20 rounded-full'>
             <input 
               type="text" 
               value={input} 
               onChange={(e) => setInput(e.target.value)} 
               onKeyDown={(e) => e.key === "Enter" ? handleSendMessage(e) : null} 
               placeholder='Send a message' 
-              className='flex-1 border-none outline-none text-white p-1 md:p-3 placeholder-gray-400 bg-transparent'  
+              className='flex-1 border-none outline-none text-white p-1 md:p-3 placeholder:text-sm placeholder-gray-400 bg-transparent'  
             />
             <input 
               type="file" 
@@ -137,13 +137,13 @@ const Chatcontainer = () => {
             <label htmlFor="image">
               <img src={assets.gallery_icon} alt="gallery-icon" className='md:w-4 w-3 mr-2 cursor-pointer' />
             </label>
-          </div>
           <img 
             src={assets.send_button} 
             onClick={(e) => handleSendMessage(e)} 
             alt="send-icon" 
-            className='md:w-9 w-6 mr-3 cursor-pointer' 
+            className='md:w-7 w-4 mx-3 cursor-pointer' 
           />
+          </div>
         </div>
       </div>
     ) : (

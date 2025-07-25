@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Chatcontainer from "../Components/Chatcontainer"
 import Sidebar from "../Components/Sidebar"
 const Home = () => {
-  const [isUserSelected,setUserselected] = useState(false)
-//  console.log(isUserSelected);
+
+
  
   return (
     <div className='h-screen w-full text-white  sm:px-[2%]  py-[2%]'>

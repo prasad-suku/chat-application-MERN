@@ -1,7 +1,7 @@
  import  {Message}  from "../models/Message.js";
 import {User}  from "../models/User.js"
 import cloudinary from "../lib/cloudinary.js";
-import {io,userSocketMap} from "../index.js"
+import {io,userSocketMap} from "../server.js"
  // get all users name expect the logged in user (current user)
  export const getUserForSidebar = async(req,res)=>{
    try{

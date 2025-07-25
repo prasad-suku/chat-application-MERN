@@ -41,13 +41,13 @@ const ProfilePage = () => {
            <img src={selectedImg?URL.createObjectURL(selectedImg):authUser?.profilePicture?authUser.profilePicture:assets.avatar_icon} alt="" className={`w-12 h-12 ${selectedImg && "rounded-full"}`}/>
             upload profile image
             </label>
-            <input type="text" onChange={(e)=>setUsername(e.target.value)} value={userName} className='p-3  border-1 border-gray-500 rounded-md' placeholder='Name' required />
+            <input type="text" onChange={(e)=>setUsername(e.target.value)} value={authUser?.fullName || userName} className='p-3  border-1 border-gray-500 rounded-md' placeholder='Name'  />
             {/* <input type="text" value={userName} onChange={()=>setUsername(e.target.value)} className='p-3  border-1 border-white rounded-md' placeholder='Name' required /> */}
            <button type='submit' className='bg-blue-700 rounded-3xl px-8 py-2'>Save </button>
          </form>
 
 {/* right */}
-        <img src={authUser?.profilePicture ||assets.logo_big} className={`md:w-60 hidden md:block w-30 ${selectedImg && "rounded-full"}`} />
+        <img src={selectedImg?URL.createObjectURL(selectedImg):authUser?.profilePicture ||assets.logo_big} className={`md:w-60 hidden md:block w-30 ${selectedImg && "rounded-full"}`} />
       </div>
 
     </div>
