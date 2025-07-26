@@ -55,7 +55,7 @@ connectDB()
 app.use("/api/status",(req,res)=>res.send("server is running"))
  
 if(process.env.NODE_ENV !=="production"){
-    const port =process.env.PORT || 300
+    const port =process.env.PORT || 3000
     server.listen(port,()=>console.log("server is running")
     )
 

@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/Authcontext'
 
 const ProfilePage = () => {
   const [selectedImg,setSelectedImg] = useState("")
-  const[userName,setUsername]=useState("")
+  const[userName,setUsername]=useState(undefined)
   const navigate = useNavigate()
   
   const {updateProfile,authUser} = useContext(AuthContext)
@@ -41,7 +41,13 @@ const ProfilePage = () => {
            <img src={selectedImg?URL.createObjectURL(selectedImg):authUser?.profilePicture?authUser.profilePicture:assets.avatar_icon} alt="" className={`w-12 h-12 ${selectedImg && "rounded-full"}`}/>
             upload profile image
             </label>
-            <input type="text" onChange={(e)=>setUsername(e.target.value)} value={authUser?.fullName || userName} className='p-3  border-1 border-gray-500 rounded-md' placeholder='Name'  />
+            <input
+  type="text"
+  onChange={(e) => setUsername(e.target.value)}
+  value={userName !== undefined ? userName : authUser?.fullName}
+  className="p-3 border border-gray-500 rounded-md"
+  placeholder="Name"
+/>
             {/* <input type="text" value={userName} onChange={()=>setUsername(e.target.value)} className='p-3  border-1 border-white rounded-md' placeholder='Name' required /> */}
            <button type='submit' className='bg-blue-700 rounded-3xl px-8 py-2'>Save </button>
          </form>
